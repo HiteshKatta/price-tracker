@@ -12,8 +12,8 @@ export default function AuthButton({ user }) {
   if (user) {
     return (
       <form action={signOut}>
-        <Button variant="ghost" size="sm" type="submit" className="gap-2">
-          <LogOut className="w-4 h-4" />
+        <Button variant="default" size="lg" type="submit" className="bg-orange-500 hover:bg-orange-600 gap-2">
+          <LogOut className=" w-5 h-5" />
           Sign Out
         </Button>
       </form>
@@ -23,14 +23,14 @@ export default function AuthButton({ user }) {
   return (
     <>
       <Button
-        onClick={() => setShowAuthModal(true)}
-        variant="default"
-        size="sm"
-        className="bg-orange-500 hover:bg-orange-600 gap-2"
-      >
-        <LogIn className="w-4 h-4" />
-        Sign In
-      </Button>
+  onClick={() => setShowAuthModal(true)}
+  variant="default"
+  size="lg"
+  className="bg-orange-500 hover:bg-orange-600 gap-2 text-base "
+>
+  <LogIn className="w-5 h-5" />
+  Sign In
+</Button>
 
       <AuthModal
         isOpen={showAuthModal}

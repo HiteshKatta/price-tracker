@@ -19,7 +19,7 @@ export default async function Home() {
       icon: Rabbit,
       title: "Lightning Fast",
       description:
-        "Deal Drop extracts prices in seconds, handling JavaScript and dynamic content",
+        "Price Tracker extracts prices in seconds, handling JavaScript and dynamic content",
     },
     {
       icon: Shield,
@@ -38,14 +38,14 @@ export default async function Home() {
     <main className="min-h-screen bg-linear-to-br from-orange-50 via-white to-orange-50">
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4  flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Image
               src="/logo.png"
-              alt="Deal Drop Logo"
+              alt="price tracker Logo"
               width={600}
               height={200}
-              className="h-10 w-auto"
+              className="h-25 w-auto"
             />
           </div>
 

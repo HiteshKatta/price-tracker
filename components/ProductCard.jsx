@@ -32,28 +32,31 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <Card className="hover:shadow-lg transition-shadow">
-      <CardHeader className="pb-3">
+    <Card className="group overflow-hidden border border-slate-200 bg-white shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-200">
+      <CardHeader className="pb-3 border-b border-slate-100">
         <div className="flex gap-4">
           {product.image_url && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={product.image_url}
               alt={product.name}
-              className="w-20 h-20 object-cover rounded-md border"
+              className="w-24 h-24 object-cover rounded-lg border border-slate-200 shadow-sm group-hover:shadow-md transition-shadow"
             />
           )}
 
           <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-gray-900 line-clamp-2 mb-2">
+            <h3 className="font-semibold text-sm text-slate-900 line-clamp-2 mb-3 tracking-tight">
               {product.name}
             </h3>
 
-            <div className="flex items-baseline gap-2">
-              <span className="text-3xl font-bold text-orange-500">
-                {product.currency} {product.current_price}
-              </span>
-              <Badge variant="secondary" className="gap-1">
+            <div className="flex items-end gap-3">
+              <div className="flex flex-col">
+                <span className="text-xs text-slate-500 mb-1">Current Price</span>
+                <span className="text-2xl font-bold text-orange-600">
+                  {product.currency} {product.current_price}
+                </span>
+              </div>
+              <Badge variant="secondary" className="gap-1 mb-1 bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100">
                 <TrendingDown className="w-3 h-3" />
                 Tracking
               </Badge>
@@ -62,13 +65,13 @@ export default function ProductCard({ product }) {
         </div>
       </CardHeader>
 
-      <CardContent>
+      <CardContent className="pt-4 pb-4">
         <div className="flex flex-wrap gap-2">
           <Button
             variant="outline"
             size="sm"
             onClick={() => setShowChart(!showChart)}
-            className="gap-1"
+            className="gap-1.5 text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-900 transition-colors"
           >
             {showChart ? (
               <>
@@ -83,19 +86,22 @@ export default function ProductCard({ product }) {
             )}
           </Button>
 
-          <Button variant="outline" size="sm" asChild className="gap-1">
-            <Link href={product.url} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="w-4 h-4" />
-              View Product
-            </Link>
-          </Button>
+          <Button 
+  variant="outline" 
+  size="sm" 
+  onClick={() => window.open(product.url, '_blank')}
+  className="gap-1.5 text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-900 transition-colors"
+>
+  <ExternalLink className="w-4 h-4" />
+  View Product
+</Button>
 
           <Button
             variant="ghost"
             size="sm"
             onClick={handleDelete}
             disabled={deleting}
-            className="text-red-600 hover:text-red-700 hover:bg-red-50 gap-1"
+            className="ml-auto gap-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <Trash2 className="w-4 h-4" />
             Remove
@@ -104,8 +110,10 @@ export default function ProductCard({ product }) {
       </CardContent>
 
       {showChart && (
-        <CardFooter className="pt-0">
-          <PriceChart productId={product.id} />
+        <CardFooter className="pt-0 px-6 py-4 border-t border-slate-100 bg-slate-50">
+          <div className="w-full">
+            <PriceChart productId={product.id} />
+          </div>
         </CardFooter>
       )}
     </Card>
